@@ -10,7 +10,22 @@
     <p><i>An endless exile...</i></p>
     <p>You are not supposed to be here.</p>
 
-    <p><a href="entries/entry-01.html">Access Log 01</a></p>
+    <a href="#" onclick="randomRedirect()">Access Entry</a>
+
+<script>
+  function randomRedirect() {
+    const roll = Math.random(); // gives a value between 0 and 1
+
+    if (roll < 0.1) {
+      window.location.href = "entries/log-a.html"; // 10%
+    } else if (roll < 0.2) {
+      window.location.href = "entries/log-b.html"; // 10%
+    } else {
+      window.location.href = "entries/log-normal.html"; // 80%
+    }
+  }
+</script>
+
     <!-- You can hide more links later or leave them out -->
 
   </body>
