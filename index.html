@@ -28,6 +28,7 @@
       align-items: center;
       border: 2px solid #00ffff;
       padding: 2rem;
+      margin-top: 2rem;
     }
 
     input[type="password"] {
@@ -50,6 +51,13 @@
     .output {
       white-space: pre-wrap;
       margin-top: 2rem;
+      text-align: left;
+      max-width: 600px;
+    }
+
+    #enterBtn {
+      margin-top: 1rem;
+      display: none;
     }
   </style>
 </head>
@@ -63,13 +71,52 @@
   </div>
 
   <div class="output" id="output"></div>
+  <button id="enterBtn" onclick="enterOS()">Enter System</button>
 
   <script>
+    const output = document.getElementById('output');
+    const enterBtn = document.getElementById('enterBtn');
+
+    function typeText(text, element, delay = 40, callback = null) {
+      let i = 0;
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, delay);
+        } else if (callback) {
+          callback();
+        }
+      }
+      type();
+    }
+
     function login() {
-      const output = document.getElementById('output');
-      output.textContent = `> ACCESS DENIED\n\n> HARDWARE KEY: NOT DETECTED\n\n> ACCESS LEVEL: RESTRICTED - READ-ONLY MODE\n\n> Note: Account token required for system authentication.\n> Token must be physically present and valid.\n> Contact with internal nodes prohibited until verification.\n\n> Opening archive in safe mode...`;
+      document.querySelector('.login-box').style.display = 'none';
+      output.textContent = '';
+
+      const bootMsg = `> ACCESS DENIED\n\n> HARDWARE KEY: NOT DETECTED\n\n> ACCESS LEVEL: RESTRICTED - READ-ONLY MODE\n\n> Note: Account token required for system authentication.\n> Token must be physically present and valid.\n> Contact with internal nodes prohibited until verification.\n\n> Opening archive in safe mode`;
+
+      typeText(bootMsg, output, 35, () => {
+        let dotCount = 0;
+        const dots = ['.', '..', '...'];
+        const loadingInterval = setInterval(() => {
+          dotCount = (dotCount + 1) % dots.length;
+          output.textContent = bootMsg + dots[dotCount];
+        }, 500);
+
+        setTimeout(() => {
+          clearInterval(loadingInterval);
+          output.textContent = bootMsg + '...\n\n> Loading complete.';
+          enterBtn.style.display = 'block';
+        }, 5000);
+      });
+    }
+
+    function enterOS() {
+      window.location.href = "desktop.html"; // replace with your actual desktop page
     }
   </script>
 </body>
 </html>
-<!-- E -->
+
