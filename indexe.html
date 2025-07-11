@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOX-II Login</title>
+  <style>
+    body {
+      background-color: #0a192f;
+      color: #00ffff;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .login-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid #00ffff;
+      padding: 2rem;
+    }
+
+    input[type="password"] {
+      background: #001f3f;
+      color: #00ffff;
+      border: none;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      width: 200px;
+    }
+
+    button {
+      background: #003f5f;
+      color: #00ffff;
+      border: 1px solid #00ffff;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+    .output {
+      white-space: pre-wrap;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>NOX-II Local Access Environment</h1>
+
+  <div class="login-box">
+    <label for="password">Enter Account Token:</label>
+    <input type="password" id="password" placeholder="********">
+    <button onclick="login()">Confirm</button>
+  </div>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    function login() {
+      const output = document.getElementById('output');
+      output.textContent = `> ACCESS DENIED\n\n> HARDWARE KEY: NOT DETECTED\n\n> ACCESS LEVEL: RESTRICTED - READ-ONLY MODE\n\n> Note: Account token required for system authentication.\n> Token must be physically present and valid.\n> Contact with internal nodes prohibited until verification.\n\n> Opening archive in safe mode...`;
+    }
+  </script>
+</body>
+</html>
