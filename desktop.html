@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOX-II Desktop</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0000ff; /* 🟦 Blue desktop background */
+      font-family: monospace;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    .desktop {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .app {
+      background-color: #003f5f;
+      color: #00ffff;
+      padding: 1rem;
+      width: 200px;
+      text-align: center;
+      border: 2px solid #00ffff;
+      cursor: pointer;
+    }
+
+    .window {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      background: white;
+      color: black;
+      border: 2px solid black;
+      width: 400px;
+      height: 300px;
+      display: none;
+      flex-direction: column;
+    }
+
+    .window-header {
+      background: #222;
+      color: white;
+      padding: 0.5rem;
+      font-weight: bold;
+    }
+
+    .window-content {
+      padding: 1rem;
+      flex-grow: 1;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100%;
+      border: none;
+      resize: none;
+      font-family: monospace;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop">
+    <div class="app" onclick="openNotes()">📝 Notes</div>
+    <div class="app" onclick="openArchive()">📁 Archive</div>
+  </div>
+
+  <!-- Notes App Window -->
+  <div class="window" id="notesWindow">
+    <div class="window-header">Notes</div>
+    <div class="window-content">
+      <textarea id="noteText">// Found this while exploring node 12.
+// Could be a broken connection or something worse.
+Stay cautious.
+
+- D.</textarea>
+    </div>
+  </div>
+
+  <script>
+    function openNotes() {
+      document.getElementById('notesWindow').style.display = 'flex';
+    }
+
+    function openArchive() {
+      window.location.href = "index-old.html"; // Replace if needed
+    }
+  </script>
+</body>
+</html>
