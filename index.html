@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NOX-II Login</title>
+
   <style>
+    /* 🟩 This sets the whole page's background, font, and center alignment */
     body {
-      background-color: #0a192f;
-      color: #00ffff;
-      font-family: monospace;
+      background-color: #0a192f; /* dark blue */
+      color: #00ffff; /* bright cyan text */
+      font-family: monospace; /* terminal-style font */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -17,11 +19,13 @@
       margin: 0;
     }
 
+    /* 🟩 This styles the big title */
     h1 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
     }
 
+    /* 🟩 This is the box around the login input and button */
     .login-box {
       display: flex;
       flex-direction: column;
@@ -31,6 +35,7 @@
       margin-top: 2rem;
     }
 
+    /* 🟩 Styling for the password input */
     input[type="password"] {
       background: #001f3f;
       color: #00ffff;
@@ -40,6 +45,7 @@
       width: 200px;
     }
 
+    /* 🟩 Styling for buttons */
     button {
       background: #003f5f;
       color: #00ffff;
@@ -48,6 +54,7 @@
       cursor: pointer;
     }
 
+    /* 🟩 This is where all the fake boot text appears */
     .output {
       white-space: pre-wrap;
       margin-top: 2rem;
@@ -55,28 +62,36 @@
       max-width: 600px;
     }
 
+    /* 🟩 This hides the Enter System button at first */
     #enterBtn {
       margin-top: 1rem;
       display: none;
     }
   </style>
 </head>
+
 <body>
+  <!-- 🟩 This is the system name/title -->
   <h1>NOX-II Local Access Environment</h1>
 
+  <!-- 🟩 This is the login area -->
   <div class="login-box">
     <label for="password">Enter Account Token:</label>
     <input type="password" id="password" placeholder="********">
     <button onclick="login()">Confirm</button>
   </div>
 
+  <!-- 🟩 This is where the boot messages will appear -->
   <div class="output" id="output"></div>
+
+  <!-- 🟩 This is the button that appears after loading finishes -->
   <button id="enterBtn" onclick="enterOS()">Enter System</button>
 
   <script>
     const output = document.getElementById('output');
     const enterBtn = document.getElementById('enterBtn');
 
+    // 🟩 This function types out the text one letter at a time
     function typeText(text, element, delay = 40, callback = null) {
       let i = 0;
       function type() {
@@ -91,32 +106,38 @@
       type();
     }
 
+    // 🟩 This happens when you click "Confirm"
     function login() {
       document.querySelector('.login-box').style.display = 'none';
       output.textContent = '';
 
       const bootMsg = `> ACCESS DENIED\n\n> HARDWARE KEY: NOT DETECTED\n\n> ACCESS LEVEL: RESTRICTED - READ-ONLY MODE\n\n> Note: Account token required for system authentication.\n> Token must be physically present and valid.\n> Contact with internal nodes prohibited until verification.\n\n> Opening archive in safe mode`;
 
+      // 🟩 Start typing the boot message
       typeText(bootMsg, output, 35, () => {
+        // 🟩 After boot text, start the dot animation
         let dotCount = 0;
         const dots = ['.', '..', '...'];
         const loadingInterval = setInterval(() => {
           dotCount = (dotCount + 1) % dots.length;
           output.textContent = bootMsg + dots[dotCount];
-        }, 500);
+        }, 500); // 🟩 Changes dots every 0.5 sec
 
+        // 🟩 After 5 seconds, show loading complete and the button
         setTimeout(() => {
           clearInterval(loadingInterval);
           output.textContent = bootMsg + '...\n\n> Loading complete.';
           enterBtn.style.display = 'block';
-        }, 5000);
+        }, 5000); // 🟩 5 seconds total
       });
     }
 
+    // 🟩 This sends the user to the next page when clicking "Enter System"
     function enterOS() {
-      window.location.href = "desktop.html"; // replace with your actual desktop page
+      window.location.href = "desktop.html"; // 🟩 Replace with your actual OS page name
     }
   </script>
 </body>
 </html>
+
 
