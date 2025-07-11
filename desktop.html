@@ -7,7 +7,8 @@
   <style>
     body {
       margin: 0;
-      background-color: #0000ff; /* 🟦 Blue desktop background */
+      background: url('bg') no-repeat center center fixed; /* 🟦 Uses bg file as wallpaper */
+      background-size: cover;
       font-family: monospace;
       color: #ffffff;
       overflow: hidden;
@@ -48,6 +49,15 @@
       color: white;
       padding: 0.5rem;
       font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-btn {
+      cursor: pointer;
+      color: red;
+      padding: 0 0.5rem;
     }
 
     .window-content {
@@ -73,7 +83,10 @@
 
   <!-- Notes App Window -->
   <div class="window" id="notesWindow">
-    <div class="window-header">Notes</div>
+    <div class="window-header">
+      Notes
+      <span class="close-btn" onclick="closeNotes()">✖</span>
+    </div>
     <div class="window-content">
       <textarea id="noteText">// Found this while exploring node 12.
 // Could be a broken connection or something worse.
@@ -88,9 +101,16 @@ Stay cautious.
       document.getElementById('notesWindow').style.display = 'flex';
     }
 
+    function closeNotes() {
+      document.getElementById('notesWindow').style.display = 'none';
+    }
+
     function openArchive() {
       window.location.href = "index-old.html"; // Replace if needed
     }
   </script>
+</body>
+</html>
+
 </body>
 </html>
