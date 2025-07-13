@@ -6,12 +6,12 @@ body {
 }
 
 a {
-  color: #ff4444;
+  color: #ff0000;
   text-decoration: none;
 }
 
 a:hover {
-  text-shadow: 0 0 5px red;
+  text-shadow: 0 0 5px #ff3b3b;
 }
 
 h1 {
@@ -21,3 +21,5 @@ h1 {
 a[href^="admins/"] {
   color: #ffb300;
 }
+a[href^="admins/"]:hover {
+  text-shadow: 0 0 8px #ffc43b;
